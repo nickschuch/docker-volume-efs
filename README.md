@@ -10,6 +10,10 @@ This plugin will:
 * Create an EFS Mount Point if it does not exist
 * MOunt to the local filesystem and into the container environment
 
+## Acknowledgements
+
+* https://github.com/SvenDowideit/docker-volumes-nfs (Used as bootstrap)
+
 ## Roadmap
 
 * Support for containers sharing the same EFS Filesystem (without checking out multiple times on the same host).
