@@ -2,7 +2,7 @@
 
 Docker plugin for AWS EFS (Elastic File System)
 
-This plugin will:
+This plugin performs the following actions:
 
 * Detect the VPC Subnet which the AWS host is placed (uses the DescribeInstance API endpoint)
 * Automatically detect the region which the AWS host is placed
