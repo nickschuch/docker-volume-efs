@@ -22,13 +22,13 @@ This plugin will:
 
 ## Usage
 
-1. Start the plugin.
+**Start the plugin**
 
 ```bash
 $ sudo ./docker-volumes-efs
 ```
 
-2. Start a container with this plugin as the file storage backend
+**Start a container with this plugin as the file storage backend**
 
 ```bash
 $ docker run --rm -it --volume-driver=efs -v foo:/no busybox
