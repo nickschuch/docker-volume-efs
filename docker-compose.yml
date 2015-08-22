@@ -1,0 +1,5 @@
+build:
+  image:       "nickschuch/local-go"
+  working_dir: "/data"
+  volumes:
+    - ".:/data"
