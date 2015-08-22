@@ -33,3 +33,28 @@ $ sudo ./docker-volumes-efs
 ```bash
 $ docker run --rm -it --volume-driver=efs -v foo:/no busybox
 ```
+
+## AWS Credentials
+
+**I will provide a sample IAM role soon**
+
+Before using the tool, ensure that you've configured credentials. The best
+way to configure credentials on a development machine is to use the
+`~/.aws/credentials` file, which might look like:
+
+```ini
+[default]
+aws_access_key_id = AKID1234567890
+aws_secret_access_key = MY-SECRET-KEY
+```
+
+You can learn more about the credentials file from this
+[blog post](http://blogs.aws.amazon.com/security/post/Tx3D6U6WSFGOK2H/A-New-and-Standardized-Way-to-Manage-Credentials-in-the-AWS-SDKs).
+
+Alternatively, you can set the following environment variables:
+
+```
+AWS_ACCESS_KEY_ID=AKID1234567890
+AWS_SECRET_ACCESS_KEY=MY-SECRET-KEY
+```
+
