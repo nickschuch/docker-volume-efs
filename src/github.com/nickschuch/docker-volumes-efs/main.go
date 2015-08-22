@@ -27,8 +27,9 @@ var (
 	defaultDir    = filepath.Join(dkvolume.DefaultDockerRootDirectory, pluginId)
 
 	// CLI Arguments.
-	cliRoot    = kingpin.Flag("root", "EFS volumes root directory.").Default(defaultDir).String()
-	cliVerbose = kingpin.Flag("verbose", "Show verbose logging.").Bool()
+	cliRoot     = kingpin.Flag("root", "EFS volumes root directory.").Default(defaultDir).String()
+	cliSecurity = kingpin.Flag("security", "Security group to be assigned to new EFS Mount points.").Default("").OverrideDefaultFromEnvar("DOCKER_VOLUMES_EFS_SECURITY").String()
+	cliVerbose  = kingpin.Flag("verbose", "Show verbose logging.").Bool()
 )
 
 type efsDriver struct {
@@ -231,9 +232,20 @@ func describeFilesystem(e *efs.EFS, n string) (*efs.DescribeFileSystemsOutput, e
 
 // Helper function to create an EFS Mount target.
 func createMountTarget(e *efs.EFS, i string, s string) (*efs.MountTargetDescription, error) {
+	var security []*string
+
+	// Determine if we need to assign a security group to this mount point, otherwise defer
+	// to the default group.
+	if *cliSecurity != "" {
+		security = []*string{
+			cliSecurity,
+		}
+	}
+
 	params := &efs.CreateMountTargetInput{
-		FileSystemId: aws.String(i),
-		SubnetId:     aws.String(s),
+		FileSystemId:   aws.String(i),
+		SubnetId:       aws.String(s),
+		SecurityGroups: security,
 	}
 	resp, err := e.CreateMountTarget(params)
 	if err != nil {
