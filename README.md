@@ -25,6 +25,7 @@ This plugin performs the following actions:
 
 * NFS tools installed on the host (http://docs.aws.amazon.com/efs/latest/ug/mounting-fs.html)
 * Docker 1.8+
+* AWS EC2 host on an AWS EFS supported region
 
 ## Usage
 
@@ -39,6 +40,11 @@ $ sudo ./docker-volumes-efs
 ```bash
 $ docker run --rm -it --volume-driver=efs -v foo:/no busybox
 ```
+
+This results in:
+
+* A new EFS Filesystem called "foo" being created
+* The EFS Filesystem mounted onto the host and into the container
 
 ## AWS Credentials
 
