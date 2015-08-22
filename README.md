@@ -8,7 +8,7 @@ This plugin will:
 * Automatically detect the region which the AWS host is placed
 * Create an EFS Filesystem if it does not exist
 * Create an EFS Mount Point if it does not exist
-* MOunt to the local filesystem and into the container environment
+* Mount to the local filesystem and into the container environment
 
 ## Acknowledgements
 
