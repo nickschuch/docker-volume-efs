@@ -16,8 +16,9 @@ This plugin will:
 
 ## Roadmap
 
-* Support for containers sharing the same EFS Filesystem (without checking out multiple times on the same host).
+* Containers to share the same mount point, instead of mounting multiple times on the same host
 * CLI arg for custom EFS Security group (other than the default)
+* Check if the system has NFS utils installed (at boot)
 
 ## Requirements
 
