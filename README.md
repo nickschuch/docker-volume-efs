@@ -16,7 +16,9 @@ This plugin will:
 
 ## Roadmap
 
-* Containers to share the same mount point, instead of mounting multiple times on the same host
+* Multiple container support, determine how we can either:
+ * Share a single NFS mount between containers and not unmount when others are still running
+ * Mount the NFS mulitple times (per container)
 * CLI arg for custom EFS Security group (other than the default)
 * Check if the system has NFS utils installed (at boot)
 
