@@ -39,7 +39,7 @@ func GetEFS(e *efs.EFS, s string, n string) (string, error) {
 			return "", err
 		}
 
-		log.Println("Using existing EFS Mount point: %s", *newMnt.IpAddress)
+		log.Printf("Using existing EFS Mount point: %s", *newMnt.IpAddress)
 		return *newMnt.IpAddress, nil
 	}
 
@@ -53,7 +53,7 @@ func GetEFS(e *efs.EFS, s string, n string) (string, error) {
 		return "", err
 	}
 
-	log.Println("Created new EFS Filesytem with mount point: %s", *newMnt.IpAddress)
+	log.Printf("Created new EFS Filesytem with mount point: %s", *newMnt.IpAddress)
 	return *newMnt.IpAddress, nil
 }
 
