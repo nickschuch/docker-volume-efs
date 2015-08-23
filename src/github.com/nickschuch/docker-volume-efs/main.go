@@ -169,8 +169,6 @@ func Cleanup(d string) {
 			continue
 		}
 
-		// We only want to work with directories which are
-
 		err = Exec("umount", p)
 		if err != nil {
 			log.Printf("Cleanup failed: %s", m)
