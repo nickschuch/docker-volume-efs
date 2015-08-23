@@ -43,9 +43,28 @@ This results in:
 * A new EFS Filesystem called "foo" being created
 * The EFS Filesystem mounted onto the host and into the container
 
-## AWS Credentials
+## IAM Role
 
-**I will provide a sample IAM role soon**
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "ec2:CreateNetworkInterface",
+        "ec2:DeleteNetworkInterface",
+        "ec2:Describe*",
+        "ec2:ModifyNetworkInterfaceAttribute",
+        "elasticfilesystem:*"
+      ],
+      "Resource": "*"
+    }
+  ]
+}
+```
+
+## Credentials
 
 Before using the tool, ensure that you've configured credentials. The best
 way to configure credentials on a development machine is to use the
