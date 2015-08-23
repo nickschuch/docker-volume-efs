@@ -29,7 +29,7 @@ This plugin performs the following actions:
 **Start the plugin**
 
 ```bash
-$ sudo ./docker-volumes-efs
+$ sudo ./docker-volume-efs
 ```
 
 **Start a container with this plugin as the file storage backend**
