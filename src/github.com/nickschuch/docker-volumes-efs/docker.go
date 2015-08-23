@@ -1,6 +1,8 @@
 package main
 
 import (
+	"strings"
+
 	"github.com/alecthomas/kingpin"
 	"github.com/fsouza/go-dockerclient"
 )
@@ -9,17 +11,17 @@ var (
 	cliDocker = kingpin.Flag("docker", "The Docker endpoint.").Default("unix:///var/run/docker.sock").OverrideDefaultFromEnvar("DOCKER_HOST").String()
 )
 
-func GetContainerByMount(path string) ([]*docker.Container, error) {
-	var containers []*docker.Container
+func GetDockerBinds() ([]string, error) {
+	var binds []string
 
 	client, err := docker.NewClient(*cliDocker)
 	if err != nil {
-		return containers, err
+		return binds, err
 	}
 
 	list, err := client.ListContainers(docker.ListContainersOptions{})
 	if err != nil {
-		return containers, err
+		return binds, err
 	}
 
 	for _, c := range list {
@@ -28,14 +30,11 @@ func GetContainerByMount(path string) ([]*docker.Container, error) {
 			continue
 		}
 
-		// Check if this mount implements our path.
-		for _, m := range container.Config.Mounts {
-			if m.Source == path {
-				containers = append(containers, container)
-				continue
-			}
+		for _, b := range container.HostConfig.Binds {
+			s := strings.Split(b, ":")
+			binds = append(binds, s[0])
 		}
 	}
 
-	return containers, nil
+	return binds, nil
 }

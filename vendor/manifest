@@ -136,6 +136,13 @@
 			"path": "/pkg/listenbuffer"
 		},
 		{
+			"importpath": "github.com/docker/docker/pkg/mount",
+			"repository": "https://github.com/docker/docker",
+			"revision": "819166c16cfa5911751501e2e0c99cf7b8e6e732",
+			"branch": "master",
+			"path": "/pkg/mount"
+		},
+		{
 			"importpath": "github.com/docker/libcontainer/user",
 			"repository": "https://github.com/docker/libcontainer",
 			"revision": "83a102cc68a09d890cce3b6c2e5c14c49e6373a0",
@@ -146,6 +153,12 @@
 			"importpath": "github.com/fsouza/go-dockerclient",
 			"repository": "https://github.com/fsouza/go-dockerclient",
 			"revision": "0d56ba6149d4f0f17464a849092e0ce96783079b",
+			"branch": "master"
+		},
+		{
+			"importpath": "github.com/jasonlvhit/gocron",
+			"repository": "https://github.com/jasonlvhit/gocron",
+			"revision": "46aa69e77e4ee58d16bc909b56bc4d1dabb93c6b",
 			"branch": "master"
 		},
 		{
