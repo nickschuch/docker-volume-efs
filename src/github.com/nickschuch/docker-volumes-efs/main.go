@@ -51,6 +51,18 @@ func (d DriverEFS) Path(r dkvolume.Request) dkvolume.Response {
 
 func (d DriverEFS) Mount(r dkvolume.Request) dkvolume.Response {
 	p := filepath.Join(d.Root, r.Name)
+
+	// Check if we need to unmount this volume from the host.
+	volumes, err := GetContainerByMount(p)
+	if err != nil {
+		return dkvolume.Response{Err: err.Error()}
+	}
+
+	if len(volumes) > 0 {
+		log.Println("Volume exists, using that for this container instance")
+		return dkvolume.Response{}
+	}
+
 	e := efs.New(&aws.Config{Region: aws.String(d.Region)})
 
 	m, err := GetEFS(e, d.Subnet, r.Name)
@@ -73,9 +85,20 @@ func (d DriverEFS) Mount(r dkvolume.Request) dkvolume.Response {
 
 func (d DriverEFS) Unmount(r dkvolume.Request) dkvolume.Response {
 	p := filepath.Join(d.Root, r.Name)
-	log.Println("Unmount %s\n", p)
 
-	err := Exec("umount", p)
+	// Check if we need to unmount this volume from the host.
+	volumes, err := GetContainerByMount(p)
+	if err != nil {
+		return dkvolume.Response{Err: err.Error()}
+	}
+
+	if len(volumes) > 0 {
+		log.Println("Volume still in use, keeping it")
+		return dkvolume.Response{}
+	}
+
+	log.Println("Unmount %s\n", p)
+	err = Exec("umount", p)
 	if err != nil {
 		return dkvolume.Response{Err: err.Error()}
 	}

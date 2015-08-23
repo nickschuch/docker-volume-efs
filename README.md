@@ -16,9 +16,6 @@ This plugin will:
 
 ## Roadmap
 
-* Multiple container support, determine how we can either:
- * Share a single NFS mount between containers and not unmount when others are still running
- * Mount the NFS mulitple times (per container)
 * Check if the system has NFS utils installed (at boot)
 
 ## Requirements

@@ -143,6 +143,12 @@
 			"path": "/user"
 		},
 		{
+			"importpath": "github.com/fsouza/go-dockerclient",
+			"repository": "https://github.com/fsouza/go-dockerclient",
+			"revision": "0d56ba6149d4f0f17464a849092e0ce96783079b",
+			"branch": "master"
+		},
+		{
 			"importpath": "github.com/vaughan0/go-ini",
 			"repository": "https://github.com/vaughan0/go-ini",
 			"revision": "a98ad7ee00ec53921f08832bc06ecf7fd600e6a1",
